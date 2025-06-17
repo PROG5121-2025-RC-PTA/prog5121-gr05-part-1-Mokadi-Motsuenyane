@@ -20,7 +20,7 @@ import javax.swing.JPasswordField;
  */
 public class Social_Media {
 
-    // global variables
+    // attributes
     public static String cellPhone[] = new String[3];
     public static String password[] = new String[3];
     public static String cellphone;
@@ -30,62 +30,94 @@ public class Social_Media {
     public static void main(String[] args) {
 
         //Label GUI to display a string 
-        JLabel lblWelcome = new JLabel();//creates a new label
+        
+        //creates a new label
+        JLabel lblWelcome = new JLabel();
         //The Label Displays text that Welcomes the user
-        lblWelcome.setText("Welcome to ConnectCircle ");//Welcomes the user to the program
-        lblWelcome.setVerticalAlignment(JLabel.CENTER);//Sets the vertical position
+        lblWelcome.setText("Welcome to ConnectCircle ");
+        //Sets the vertical position
+        lblWelcome.setVerticalAlignment(JLabel.CENTER);
 
-        lblWelcome.setForeground(Color.WHITE);//Sets the Color of the label
-        //Sets the border
-        Border borderLbl = BorderFactory.createLineBorder(Color.WHITE, 3);//Creates a border for the lable
-        lblWelcome.setBorder(borderLbl);//Sets the border of the label
-        ImageIcon imgLogo = new ImageIcon("logo.png");//Sets an image from the projects folder
+        //Sets the Color of the label
+        lblWelcome.setForeground(Color.WHITE);
+       
+        //Creates a border for the lable
+        Border borderLbl = BorderFactory.createLineBorder(Color.WHITE, 3);
+        //Sets the border of the label
+        lblWelcome.setBorder(borderLbl);
+        //Sets an image from the projects folder
+        ImageIcon imgLogo = new ImageIcon("logo.png");
 
-        lblWelcome.setIcon(imgLogo);//Changes icon of frame
-        lblWelcome.setHorizontalTextPosition(JLabel.RIGHT);//Sets the horizontal alignment from the image
-        lblWelcome.setVerticalAlignment(JLabel.CENTER);// Sets the vertical alignment from the image
+        //Changes icon of frame
+        lblWelcome.setIcon(imgLogo);
+        //Sets the horizontal alignment from the image
+        lblWelcome.setHorizontalTextPosition(JLabel.RIGHT);
+        // Sets the vertical alignment from the image
+        lblWelcome.setVerticalAlignment(JLabel.CENTER);
 
-        lblWelcome.setBounds(81, 30, 270, 100);//Sets position, width and height of the label
+        //Sets position, width and height of the label
+        lblWelcome.setBounds(81, 30, 270, 100);
 
         // frame interface so that user can see the program 
-        JFrame frmWelcome = new JFrame();//Creates a new frame
-        frmWelcome.setTitle("ConnectCircle");//Sets the title of the frame
-        frmWelcome.getContentPane().setBackground(new Color(0x12342));//sets the color of the frame
-        frmWelcome.setLayout(null);//Allows space in the frame
+        //Creates a new frame
+        JFrame frmWelcome = new JFrame();
+        //Sets the title of the frame
+        frmWelcome.setTitle("ConnectCircle");
+        //sets the color of the frame
+        frmWelcome.getContentPane().setBackground(new Color(0x12342));
+        //Allows space in the frame
+        frmWelcome.setLayout(null);
         //sets the size of the frame
         frmWelcome.setSize(420, 420);
         frmWelcome.setResizable(false);
 
-        frmWelcome.setLocationRelativeTo(null);//Aligns the frame
-        frmWelcome.setVisible(true);//Makes the frame visible
-        frmWelcome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//It allows the user to close the program
-        frmWelcome.add(lblWelcome);//Adds the lable to the frame
-        ImageIcon imgIcon = new ImageIcon("logo.png");//Sets an image from the projects folder
-        frmWelcome.setIconImage(imgIcon.getImage());//Changes icon of frame
+        //Aligns the frame
+        frmWelcome.setLocationRelativeTo(null);
+        //Makes the frame visible
+        frmWelcome.setVisible(true);
+        //It allows the user to close the program
+        frmWelcome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //Adds the lable to the frame
+        frmWelcome.add(lblWelcome);
+        //Sets an image from the projects folder
+        ImageIcon imgIcon = new ImageIcon("logo.png");
+        //Changes icon of frame
+        frmWelcome.setIconImage(imgIcon.getImage());
 
         //Button Register 
-        JButton btnRegister = new JButton();//creates the button
-        btnRegister.setBounds(75, 250, 85, 26);//Adjusts the size and position of the button 
-        frmWelcome.add(btnRegister);//adds the button on the frame
-        btnRegister.setText("Sign-up");
-        btnRegister.addActionListener(new ActionListener() {//The things that happen when the user clicks the button 
+        //creates the button
+        JButton btnRegister = new JButton("Sign-up");
+        //Adjusts the size and position of the button 
+        btnRegister.setBounds(75, 250, 85, 26);
+        //adds the button on the frame
+        frmWelcome.add(btnRegister);
+        
+        //The things that happen when the user clicks the button
+        btnRegister.addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
-                register();//the button calls the function
-                frmWelcome.dispose();//it closes the frame
+                //the button calls the function
+                register();
+                //it closes the frame
+                frmWelcome.dispose();
             }
         });
 
         //Button Login
-        JButton btnLogin = new JButton();//creates the button
-        btnLogin.setBounds(255, 250, 85, 26);//Adjusts the size and position of the button
-        frmWelcome.add(btnLogin);//adds the button to the frame
-        btnLogin.setText("Sign-in");//Sets text on a button
-        btnLogin.addActionListener(new ActionListener() {//The things that happen when the user clicks the button 
+        //creates the button
+        JButton btnLogin = new JButton("Sign-in");
+        //Adjusts the size and position of the button
+        btnLogin.setBounds(255, 250, 85, 26);
+        //adds the button to the frame
+        frmWelcome.add(btnLogin);
+        //The things that happen when the user clicks the button 
+        btnLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                login();//the button calls the function
-                frmWelcome.dispose();//it closes the frame
+                //the button calls the function
+                login();
+                //it closes the frame
+                frmWelcome.dispose();
             }
         });
 
@@ -95,57 +127,99 @@ public class Social_Media {
     public static void register() {
 
         // frame of Signup page
-        JFrame frmSignUp = new JFrame("Sign-up to ConnectCircle");//Creates a new frame
-        frmSignUp.setVisible(true);//Makes frame visible
-        frmSignUp.setSize(400, 400);//it adjusts the frame's size
-        frmSignUp.setResizable(false);// it disables the resizabilityof the  
-        frmSignUp.getContentPane().setBackground(new Color(0x12342));//sets the color of the frame
-        frmSignUp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//It allows the user to close the program
-        ImageIcon imgIcon = new ImageIcon("logo.png");//Sets an image from the projects folder
-        frmSignUp.setIconImage(imgIcon.getImage());//Changes icon of frame
+        //Creates a new frame
+        JFrame frmSignUp = new JFrame("Sign-up to ConnectCircle");
+        //Makes frame visible
+        frmSignUp.setVisible(true);
+        //it adjusts the frame's size
+        frmSignUp.setSize(400, 400);
+        // it disables the resizability of the frame
+        frmSignUp.setResizable(false);
+        //sets the color of the frame
+        frmSignUp.getContentPane().setBackground(new Color(0x12342));
+        //It allows the user to close the program
+        frmSignUp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //Sets an image from the projects folder
+        ImageIcon imgIcon = new ImageIcon("logo.png");
+        //Changes icon of frame
+        frmSignUp.setIconImage(imgIcon.getImage());
 
-        JLabel lblSignUp = new JLabel("Sign Up to ConnectCircle, Connect with your Circle ");//creates a new label
-        lblSignUp.setForeground(Color.WHITE);//Sets the color of the label
-        frmSignUp.add(lblSignUp);// adds the label to the frame
+        //creates a new label
+        JLabel lblSignUp = new JLabel("Sign Up to ConnectCircle, Connect with your Circle ");
+        //Sets the color of the label
+        lblSignUp.setForeground(Color.WHITE);
+        // adds the label to the frame
+        frmSignUp.add(lblSignUp);
+        // sets size of the label
         lblSignUp.setBounds(30, 50, 350, 25);
 
-        JLabel lblUsername2 = new JLabel("Username : ");//creates a new label
-        lblUsername2.setForeground(Color.WHITE);//Sets the color of the label
-        frmSignUp.add(lblUsername2);// adds the label to the frame
+        //creates a new label
+        JLabel lblUsername2 = new JLabel("Username : ");
+        //Sets the color of the label
+        lblUsername2.setForeground(Color.WHITE);
+        // adds the label to the frame
+        frmSignUp.add(lblUsername2);
+        // sets size of the label
         lblUsername2.setBounds(50, 100, 75, 25);
 
-        JTextField usernameField2 = new JTextField(10);//Creates a new textField
-        usernameField2.setBounds(125, 100, 200, 25);//sets size and position of the textField
-        frmSignUp.add(usernameField2);// adds a textField to the frame
-        //Password
-        JLabel lblCellphone = new JLabel("Cellphone : ");//creates a new label
-        frmSignUp.add(lblCellphone);// adds the label tothe frame
-        lblCellphone.setForeground(Color.WHITE);//Sets the color of the label
-        lblCellphone.setBounds(50, 150, 75, 25);// Sets the size and position of the label
+        //Creates a new textField
+        JTextField usernameField2 = new JTextField(10);
+        //sets size and position of the textField
+        usernameField2.setBounds(125, 100, 200, 25);
+        // adds a textField to the frame
+        frmSignUp.add(usernameField2);
+        
+        //creates a new label
+        JLabel lblCellphone = new JLabel("Cellphone : ");
+        // adds the label to the frame
+        frmSignUp.add(lblCellphone);
+        //Sets the color of the label
+        lblCellphone.setForeground(Color.WHITE);
+        // Sets the size and position of the label
+        lblCellphone.setBounds(50, 150, 75, 25);
 
+        //creates a new label
         JLabel lblMessage2 = new JLabel();
-        frmSignUp.add(lblMessage2);// adds the label to the frame
-        lblMessage2.setForeground(Color.white);//Sets the Color of the lable
-        lblMessage2.setBounds(125, 275, 250, 35);//sets size aand position of the label
+        // adds the label to the frame
+        frmSignUp.add(lblMessage2);
+        //Sets the Color of the lable
+        lblMessage2.setForeground(Color.white);
+        //sets size and position of the label
+        lblMessage2.setBounds(125, 275, 250, 35);
 
-        JTextField cellphoneField = new JTextField(10);//Creates a new textField
-        cellphoneField.setBounds(125, 150, 200, 25);//sets size and position of the textField
-        frmSignUp.add(cellphoneField);// adds a textField to the frame
-        frmSignUp.setLayout(null);// sets the layout of the frame
+        //Creates a new textField
+        JTextField cellphoneField = new JTextField(10);
+        //sets size and position of the textField
+        cellphoneField.setBounds(125, 150, 200, 25);
+        // adds a textField to the frame
+        frmSignUp.add(cellphoneField);
+        // sets the layout of the frame
+        frmSignUp.setLayout(null);
 
-        JLabel lblPassword2 = new JLabel("Password : ");//creates a new label
-        frmSignUp.add(lblPassword2);// adds the label tothe frame
-        lblPassword2.setForeground(Color.WHITE);//Sets the color of the label
-        lblPassword2.setBounds(50, 200, 75, 25);// Sets the size and position of the label
+        //creates a new label
+        JLabel lblPassword2 = new JLabel("Password : ");
+        // adds the label to the frame
+        frmSignUp.add(lblPassword2);
+        //Sets the color of the label
+        lblPassword2.setForeground(Color.WHITE);
+        // Sets the size and position of the label
+        lblPassword2.setBounds(50, 200, 75, 25);
 
-        JPasswordField passwordField2 = new JPasswordField(10);//Creates a new textField
-        passwordField2.setBounds(125, 200, 200, 25);//sets size and position of the textField
-        frmSignUp.add(passwordField2);// adds a textField to the frame
+        //Creates a new passwordfield
+        JPasswordField passwordField2 = new JPasswordField(10);
+        //sets size and position of the passwordField
+        passwordField2.setBounds(125, 200, 200, 25);
+        // adds a passwordField to the frame
+        frmSignUp.add(passwordField2);
 
-        JButton btnSignUp = new JButton("Sign-Up");//creates the button
-        btnSignUp.setBounds(170, 250, 85, 26);//Adjusts the size and position of the button
-        frmSignUp.add(btnSignUp);//adds the button to the frame
-        btnSignUp.addActionListener(new ActionListener() {//The things that happen when the user clicks the button 
+        //creates the button
+        JButton btnSignUp = new JButton("Sign-Up");
+        //Adjusts the size and position of the button
+        btnSignUp.setBounds(170, 250, 85, 26);
+        //adds the button to the frame
+        frmSignUp.add(btnSignUp);
+        //The things that happen when the user clicks the button 
+        btnSignUp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Declaration
@@ -191,22 +265,32 @@ public class Social_Media {
                     }
             }
         });
-
+          
+        //creates a new button
         JButton btnSignIn2 = new JButton("Sign-In");
-        btnSignIn2.setBounds(250, 310, 85, 26);//Adjusts the size and position of the button
-        frmSignUp.add(btnSignIn2);//adds the button to the frame
-        btnSignIn2.addActionListener(new ActionListener() {//The things that happen when the user clicks the button 
+        //Adjusts the size and position of the button
+        btnSignIn2.setBounds(250, 310, 85, 26);
+        //adds the button to the frame
+        frmSignUp.add(btnSignIn2);
+        //The things that happen when the user clicks the button
+        btnSignIn2.addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
-                login();// it calls the login frame
-                frmSignUp.dispose();//closes the program
+                // it calls the login frame
+                login();
+                //closes the program
+                frmSignUp.dispose();
             }
         });
 
-        JLabel lblLogin = new JLabel("Do you an account on ConnectCircle ? ");//creates a label
-        frmSignUp.add(lblLogin);//add to frame
-        lblLogin.setForeground(Color.white);//Sets the Color of the lable
-        lblLogin.setBounds(20, 300, 300, 50);//set the label's position and size
+        //closes the program
+        JLabel lblLogin = new JLabel("Do you an account on ConnectCircle ? ");
+        //add to frame
+        frmSignUp.add(lblLogin);
+        //Sets the Color of the label
+        lblLogin.setForeground(Color.white);
+        //set the label's position and size
+        lblLogin.setBounds(20, 300, 300, 50);
 
     }
     // methods inspired by BroCode YouTube channel
@@ -214,70 +298,109 @@ public class Social_Media {
     public static void login() {
 
         //frame the login page
-        JFrame frmSignIn = new JFrame("Sign-in to ConnectCircle");//Creates a new frame
-        frmSignIn.setVisible(true);//Makes frame visible
-        frmSignIn.setSize(400, 400);//it adjusts the frame's size
+        //Creates a new frame
+        JFrame frmSignIn = new JFrame("Sign-in to ConnectCircle");
+        //Makes frame visible
+        frmSignIn.setVisible(true);
+        //it adjusts the frame's size
+        frmSignIn.setSize(400, 400);
         frmSignIn.setResizable(false);
-        frmSignIn.getContentPane().setBackground(new Color(0x12342));//sets the color of the frame
-        frmSignIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//It allows the user to close the program
+        //sets the color of the frame
+        frmSignIn.getContentPane().setBackground(new Color(0x12342));
+        //It allows the user to close the program
+        frmSignIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JLabel lblSignIn = new JLabel("Sign In to ConnectCircle, Connect with your Circle ");//creates a new label
-        lblSignIn.setForeground(Color.WHITE);//Sets the color of the label
-        frmSignIn.add(lblSignIn);// adds the label to the frame
+        //creates a new label
+        JLabel lblSignIn = new JLabel("Sign In to ConnectCircle, Connect with your Circle ");
+        //Sets the color of the label
+        lblSignIn.setForeground(Color.WHITE);
+        // adds the label to the frame
+        frmSignIn.add(lblSignIn);
+        //adjusts the size of the label
         lblSignIn.setBounds(30, 50, 350, 25);
 
-        //label show text that makes it easier for the user to use the program
         //Username
-        JLabel lblUsername = new JLabel("Username : ");//creates a new label
-        lblUsername.setForeground(Color.WHITE);//Sets the color of the label
-        frmSignIn.add(lblUsername);// adds the label to the frame
+        
+        //creates a new label
+        JLabel lblUsername = new JLabel("Username : ");
+        //Sets the color of the label
+        lblUsername.setForeground(Color.WHITE);
+        // adds the label to the frame
+        frmSignIn.add(lblUsername);
+        //adjusts the size of the label
         lblUsername.setBounds(50, 100, 75, 25);
+        
         //Password
-        JLabel lblPassword = new JLabel("Password : ");//creates a new label
-        frmSignIn.add(lblPassword);// adds the label tothe frame
-        lblPassword.setForeground(Color.WHITE);//Sets the color of the label
-        lblPassword.setBounds(50, 150, 75, 25);// Sets the size and position of the label
+        //creates a new label
+        JLabel lblPassword = new JLabel("Password : ");
+        // adds the label to the frame
+        frmSignIn.add(lblPassword);
+        //Sets the color of the label
+        lblPassword.setForeground(Color.WHITE);
+        // Sets the size and position of the label
+        lblPassword.setBounds(50, 150, 75, 25);
 
+        //creates a new label
         JLabel lblMessage = new JLabel();
-        frmSignIn.add(lblMessage);// adds the label to the frame
-        lblMessage.setForeground(Color.white);//Sets the Color of the lable
-        lblMessage.setBounds(125, 250, 250, 35);//sets size aand position of the label
+        // adds the label to the frame
+        frmSignIn.add(lblMessage);
+        //Sets the Color of the lable
+        lblMessage.setForeground(Color.white);
+        //sets size and position of the label
+        lblMessage.setBounds(125, 250, 250, 35);
 
         //Text fields
-        JTextField usernameField = new JTextField(10);//Creates a new textField
-        usernameField.setBounds(125, 100, 200, 25);//sets size and position of the textField
-        frmSignIn.add(usernameField);// adds a textField to the frame
-        frmSignIn.setLayout(null);// sets the layout of the frame
+        //Creates a new textField
+        JTextField usernameField = new JTextField(10);
+        //sets size and position of the textField
+        usernameField.setBounds(125, 100, 200, 25);
+        // adds a textField to the frame
+        frmSignIn.add(usernameField);
+        // sets the layout of the frame
+        frmSignIn.setLayout(null);
 
-        JPasswordField passwordField = new JPasswordField(10);//Creates a new textField
-        passwordField.setBounds(125, 150, 200, 25);//sets size and position of the textField
-        frmSignIn.add(passwordField);//add the textField to the frame
+        //Creates a new passwordField
+        JPasswordField passwordField = new JPasswordField(10);
+        //sets size and position of the passwordField
+        passwordField.setBounds(125, 150, 200, 25);
+        //add the passwordField to the frame
+        frmSignIn.add(passwordField);
 
-        ImageIcon imgIcon = new ImageIcon("logo.png");//Sets an image from the projects folder
-        frmSignIn.setIconImage(imgIcon.getImage());//Changes icon of frame
+        //Sets an image from the projects folder
+        ImageIcon imgIcon = new ImageIcon("logo.png");
+        //Changes icon of frame
+        frmSignIn.setIconImage(imgIcon.getImage());
 
-        JButton btnSignIn = new JButton("Sign-In");//creates the button
-        btnSignIn.setBounds(180, 210, 85, 26);//Adjusts the size and position of the button
-        frmSignIn.add(btnSignIn);//adds the button to the frame
-        btnSignIn.addActionListener(new ActionListener() {//The things that happen when the user clicks the button 
+        //creates the button
+        JButton btnSignIn = new JButton("Sign-In");
+        //Adjusts the size and position of the button
+        btnSignIn.setBounds(180, 210, 85, 26);
+        //adds the button to the frame
+        frmSignIn.add(btnSignIn);
+        //The things that happen when the user clicks the button 
+        btnSignIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Declarations
                 String loginUsername, passwordText;
 
-                loginUsername = usernameField.getText();// gets text from the textField
-                passwordText = String.valueOf(passwordField.getPassword());// gets text from the textField
-                loginUser(loginUsername, passwordText);// calls the function  
+                // gets text from the textField
+                loginUsername = usernameField.getText();
+                // gets text from the passwordField
+                passwordText = String.valueOf(passwordField.getPassword());
+                // calls the function 
+                loginUser(loginUsername, passwordText); 
                 //checks if the username is valid
                 if (checkUserName(loginUsername) == false) {
+                    //prints messsage
                     JOptionPane.showMessageDialog(null, "Username is formatted inccorrectly please make sure that your username "
-                            + "contains an underscore and is no more than five characters long.");//prints messsage
-                }//close if
+                            + "contains an underscore and is no more than five characters long.");
+                }
                 //Checks and validate password
                 if (checkPasswordComplexity(passwordText) == false) {
-
+                    //prints messsage
                     JOptionPane.showMessageDialog(null, "Password  is not correctly formatted; please ensure that the password "
-                            + "contains at least eight characters, a capital and small letter, a number, and a special character.");//prints message
+                            + "contains at least eight characters, a capital and small letter, a number, and a special character.");
                 }//close if
 
                 
@@ -303,26 +426,35 @@ public class Social_Media {
                             //Sets the text in the label and calls the function
                             lblMessage.setText("Login failed please go and register");
                    
-                    } //close if
-                } // close for loop
+                    } 
+                } 
                 
 
             }
         });
+       //creates a label
+        JLabel lblRegister = new JLabel("Have signed up to ConnectCircle? ");
+        //add a label to the frame
+        frmSignIn.add(lblRegister);
+        //Sets the Color of the lable
+        lblRegister.setForeground(Color.white);
+        //set the label's position and size
+        lblRegister.setBounds(20, 300, 300, 50);
 
-        JLabel lblRegister = new JLabel("Have signed up to ConnectCircle? ");//creates a label
-        frmSignIn.add(lblRegister);//add to frame
-        lblRegister.setForeground(Color.white);//Sets the Color of the lable
-        lblRegister.setBounds(20, 300, 300, 50);//set the label's position and size
-
+        //creates a new button
         JButton btnSignUp2 = new JButton("Sign-Up");
-        btnSignUp2.setBounds(230, 310, 85, 26);//Adjusts the size and position of the button
-        frmSignIn.add(btnSignUp2);//adds the button to the frame
-        btnSignUp2.addActionListener(new ActionListener() {//The things that happen when the user clicks the button 
+        //Adjusts the size and position of the button
+        btnSignUp2.setBounds(230, 310, 85, 26);
+        //adds the button to the frame
+        frmSignIn.add(btnSignUp2);
+        //The things that happen when the user clicks the button
+        btnSignUp2.addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
-                register();// it calls the registration frame
-                frmSignIn.dispose();//closes the program
+                // it calls the registration method
+                register();
+                //closes the program
+                frmSignIn.dispose();
             }
         });
 
@@ -335,29 +467,37 @@ public class Social_Media {
         usernameLength = username.length();//gets the length of a string
         //if statement checks that the username is valid
         if (username.contains("_") && (usernameLength <= 5)) {
-            return true;//returns the boolean true
+            //returns the boolean true
+            return true;
         } else {
-            return false; // returns the boolean false
+            // returns the boolean false
+            return false; 
         }
     }
-    // the fuction validates the password of that the user enters
-
+    
+    
+    // the method validates the password of that the user enters
     public static boolean checkPasswordComplexity(String password) {
-        //Function checks if password is valid
-        String capitalLetter = ".*[A-Z].*";//Checks all capital letters
-        String smallLetter = ".*[a-z].*";//Checks all small letters
-        String specialChar = ".*[!@#$%^&*(),.?\":{}|<>].*";//Checks all special characters
-        String digits = ".*\\d.*";//Checks character digits
+        //Checks all capital letters
+        String capitalLetter = ".*[A-Z].*";
+        //Checks all small letters
+        String smallLetter = ".*[a-z].*";
+        //Checks all special characters
+        String specialChar = ".*[!@#$%^&*(),.?\":{}|<>].*";
+        //Checks character digits
+        String digits = ".*\\d.*";
         //if statement checks that password is valid
         if (password.length() >= 8 && password.matches(capitalLetter) && password.matches(smallLetter)
                 && password.matches(digits) && password.matches(specialChar)) {
-            return true;//returns function to true
+            //returns function to true
+            return true;
         } else {
-            return false;// returns function to false
+            // returns function to false
+            return false;
         }
     }
     //function validates cellphone number
-    //inspired by ChatGpt
+ 
 
     public static boolean checkCellPhoneNumber(String cellphone) {
         //declaration
@@ -365,14 +505,19 @@ public class Social_Media {
         String firstChar;
         int fourthDigit;
         int cellphoneLength;
-        cellphoneLength = cellphone.length();//gets the length of the cellphone number
-        firstChar = cellphone.substring(0, 3); // Gets characters from index 0 to 2 (inclusive)
-        fourthDigit = Character.getNumericValue(cellphone.charAt(3));//Gets and converts the fourth digit of the cellphone number
+        //gets the length of the cellphone number
+        cellphoneLength = cellphone.length();
+        // Gets characters from index 0 to 2 (inclusive)
+        firstChar = cellphone.substring(0, 3); 
+        //Gets and converts the fourth digit of the cellphone number
+        fourthDigit = Character.getNumericValue(cellphone.charAt(3));
         //if statement validates the cellphone number
         if ((cellphoneLength == 12) && (firstChar.equals(cellCode)) && (fourthDigit >= 6) && fourthDigit <= 8) {
-            return true;//returns function true
+           //returns function true
+            return true;
         } else {
-            return false;// returns function false
+            // returns function false
+            return false;
         }
     }
     //registers the user to the program
@@ -380,15 +525,14 @@ public class Social_Media {
     public static String registerUser(String username, String password, String cellphone) {
         //if statement checks that the cellphone number, username and password are valid
         if (checkCellPhoneNumber(cellphone) == true && checkPasswordComplexity(password) == true && checkUserName(username) == true) {
-
-            return "You have successfully registered";//returns message
+             //returns message
+            return "You have successfully registered";
         } else {
-            return "Registration failed please, Try again!";//returns error message
+            //returns error message
+            return "Registration failed please, Try again!";
         }
     }
-    //fuction cheks that user logs in
-    //inspired by meta ai
-
+    
     public static boolean loginUser(String username, String password) {
         //if statement checks if user and password if they valid
         if (checkUserName(username) == true && checkPasswordComplexity(password) == true) {
@@ -398,7 +542,7 @@ public class Social_Media {
         }
     }
     // function returns the login status
-    //inspired by meta Ai
+  
 
     public static String returnLoginStatus(String username, String password) {
         //Validates the login status

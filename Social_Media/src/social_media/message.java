@@ -18,12 +18,27 @@ import java.io.*;
  */
 public class message {
     //attributes
-    private static int arrayIndex;
+    private static int arrayIndex = 0;
     public static int messageSent = 0;
+    public static int deleteIndex = 0;
+    public static int sentIndex = 0;
+    public static int idIndex = 0;
+    public static int hashIndex = 0;
+    public static int storeIndex = 0;
     public static String recipient;
     public static int totalMessages = 0;
     public static int deleteMessage;
+    public static int sentMessage;
     
+    //arrays used to store the user data
+    public static ArrayList<String> sentMessages = new ArrayList<>();
+    public static ArrayList<String> storedMessages = new ArrayList<>();
+    public static ArrayList<String> deletedMessages = new ArrayList<>();
+    public static ArrayList<String> messagesHashes = new ArrayList<>();
+    public static ArrayList<String> messagesIDs = new ArrayList<>();
+    public static ArrayList<String> recipients = new ArrayList<>();
+
+ 
     
     public static void selectionPage(){
 
@@ -97,8 +112,168 @@ public class message {
         btnRecent.addActionListener(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Coming Soon");
+                //declartions
+                String longMessage,option,search,report;
+                boolean found = false;
+                boolean deleted = false;
+                 //prompts the user to select an option
+                 option= JOptionPane.showInputDialog(null, """
+                                                           Please enter option
+                                                           a. Display the sender and recipient of all sent messages
+                                                           b. Display the longest sent message
+                                                           c. Search for a messageID and display the correspoding recipient
+                                                           d. Search for all messages sent to a particular recipient
+                                                           e. Delete a message using the message hash.
+                                                           f. Display a report that list of the full details of all the sent message.""");
+                    
+                 // if-else statements checks for all the options 
+                 if (option.toUpperCase().equals("A")) {
+                     //checks if the array is empty
+                      if (sentMessages.isEmpty()) {
+                         JOptionPane.showMessageDialog(null, "No messages sent yet.");
+                         return;
+                         }
+                      //creates a new string builder
+                     StringBuilder reports = new StringBuilder();
+              for (int i = 0; i < sentMessages.size(); i++) {
+                  //generates reports
+              reports.append("Sender: ").append(Social_Media.cellphone)
+          .append(", Recipient: ").append(recipients.get(i))
+          .append(", Message: ").append(sentMessages.get(i)).append("\n");
+}
+JOptionPane.showMessageDialog(null, reports.toString());
+
+                }
+                 else if (option.toUpperCase().equals("B")) {
+                     //checks if the array is empty
+                      if (sentMessages.isEmpty()) {
+                          //diplays a message
+                    JOptionPane.showMessageDialog(null, "No messages available.");
+                          return;
+                           }
+                     
+                     //long message is initialized
+                 longMessage  =sentMessages.get(0);  
+                    //loop is used to check te longest message
+                      for (int d = 0; d < sentMessages.size(); d++) {
+                    //if statement checks for the longest message
+                    if (sentMessages != null && sentMessages.get(d) != null && longMessage.length() < (String.valueOf(sentMessages.get(d)).length())) {
+                        //gets the new longest message
+                        longMessage= sentMessages.get(d);
+                     }
+                    
+                   }
+                      //displays the longest message
+                 JOptionPane.showMessageDialog(null, "The longest message is: "+longMessage);
+                 }
+                 else if (option.toUpperCase().equals("C")) {
+
+                     //prompts the user to search for a messageID
+                    search = JOptionPane.showInputDialog(null,"Plesae enter a message ID to search for");
+                  //checks if search is empty
+                    if (search == null || search.isEmpty()){
+                        return;
+                    }
+
+          //the loop iterates between all the elements of the array
+        for (int k = 0; k < messagesIDs.size(); k++) {
+            if (messagesIDs.get(k).equals(search)) {
+                //generaets user output
+                JOptionPane.showMessageDialog(null,
+                    "Message: " + sentMessages.get(k) +
+                    "\nRecipient: " + recipients.get(k));
+                found = true;
+                break;
             }
+        }
+        if (found == false) {
+            //displays error message
+            JOptionPane.showMessageDialog(null, "Message ID not found.");
+        } 
+                  }
+ 
+                 else if (option.toUpperCase().equals("D")) {
+                     
+                     
+                     //prompts the user to search for a messageID
+       
+                  search = JOptionPane.showInputDialog(null,"Plesae enter the recipient's number to search for"); 
+                 //checks if search is empty
+                  if (search == null || search.isEmpty()){
+                     return;
+                 }
+                  //creates a new StringBuilder
+        StringBuilder results = new StringBuilder();
+        //loop is used iterate between he whole array
+        for (int p = 0; p < recipients.size(); p++) {
+            //if checks if the search is equal to recipients
+            if (recipients.get(p).contains(search)) {
+                //generates results
+                results.append("Message: ").append(sentMessages.get(p)).append("\n");
+            }
+        }
+         //checks if the are elments in the stringbuilder
+        if (results.length() == 0) {
+            //user output
+            JOptionPane.showMessageDialog(null, "No messages found for recipient " + search);
+        } 
+        else {
+            //user output
+            JOptionPane.showMessageDialog(null, "Messages sent to " + search + ":\n" + results);
+        }
+                 }
+                 else if (option.toUpperCase().equals("E")) {
+                   //prompt the user to enter a message hash to delete a message
+                   search = JOptionPane.showInputDialog(null, "Please enter a message hash to delete a message");
+                     for (int z = 0; z < messagesHashes.size(); z++) {
+                         //check if massage hashes is equal to search
+                         if ((messagesHashes.get(z)).equals(search)) {
+                            //deletes messsege
+                                 deletedMessages.add(sentMessages.get(z));
+                                 sentMessages.remove(z);
+                                 recipients.remove(z);
+                                  messagesIDs.remove(z);
+                                  messagesHashes.remove(z);
+                                  deleted=true;
+                             //user output
+                             JOptionPane.showMessageDialog(null, "Message has been deleted.");
+                             //stops the loop
+                             break;
+                         }
+                         if (deleted == false) {
+                             //user output
+                           JOptionPane.showMessageDialog(null, "Message hash not found.");  
+                         }
+   
+                     }
+                 }
+                 else if (option.toUpperCase().equals("F")) {
+                   if (sentMessages.isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "No sent messages available.");
+                             } else {
+                  StringBuilder reports = new StringBuilder();
+                  
+                  //loop iterates between all elements of the array
+                 for (int j = 0; j < sentMessages.size(); j++) {
+                     //generates a report
+                reports.append("Recipient: ").append(recipients.get(j))
+                          .append("\nSender: ").append(Social_Media.cellphone)
+                          .append("\nMessage: ").append(sentMessages.get(j))
+                          .append("\nMessage Hash: ").append(messagesHashes.get(j))
+                          .append("\nMessage ID: ").append(messagesIDs.get(j))
+                          .append("\\n");
+            }
+                 //user output
+            JOptionPane.showMessageDialog(null, reports.toString());
+        }
+                 }
+                 else{
+                     //displays an error message
+                     JOptionPane.showMessageDialog(null, "Error please select option a - f. Please try agian");
+                 }
+                      
+                      }
+                         
         });
         
         //option 3
@@ -149,6 +324,9 @@ public class message {
         numMessageID=Integer.parseInt(messageID);
         //calls the function
         checkMessageID(messageID);
+        //messageID is stored in an array
+        messagesIDs.add(messageID) ;
+     
       return numMessageID;
     }
     
@@ -168,7 +346,11 @@ public class message {
         userSelection = Integer.valueOf(JOptionPane.showInputDialog(null," Select the following\n 1. Send Message"
                 + "\n 2.Disregard Message\n 3.Store Message"));//prompt the user to select the option
         if (userSelection == 1) {
+            //methods has been called
             printMessage(message);
+            //the sent messages has been stored in an array
+            sentMessages.add(message);
+            sentMessage = 1;
           return "Message successfully sent." ; //returns message
         }
         else if(userSelection == 2){
@@ -178,6 +360,9 @@ public class message {
               deleteMessage = userDelete;
               //changes content of the message string
               message =message.replace(message, " ");
+              //the disgarded messages are stored in an array
+              deletedMessages.add(message) ;
+              
               return "Message deleted."; //returns message
           }
           else{
@@ -185,7 +370,10 @@ public class message {
           }
         }
         else if (userSelection == 3) {
+            //method is called
             storeMessage(message);
+             //the stored messages are stored in array
+            storedMessages.add(message);
           return "Message successfully stored..";  //returns message
         }
         else{
@@ -274,6 +462,9 @@ public class message {
         lastWord = (words[words.length-1]).toUpperCase();  
         //generates the messageHash
         messageHash = firstTwo+":"+messageIndex+":"+firstWord+lastWord;
+        //messages hashes are stored in an array
+        messagesHashes.add(messageHash);
+        
         //it will return the messageHash
         return messageHash;
     }
@@ -290,20 +481,7 @@ public class message {
   
     
     public static void sendPage() {
-       
-       
-        //prompts the user to enter the recipient number
-        recipient = JOptionPane.showInputDialog(null,"Please enter the recipient's cellphone number "
-                + "with the country code");
-        //creates a new instance of the class
-        Social_Media social = new Social_Media();
-        //Function called from theb  social class
-        social.checkCellPhoneNumber(recipient);
-        
-        
-    
-            
-    
+
         //creates a new label
          JLabel lblProfile = new JLabel("Chat with "+recipient);
       
@@ -370,7 +548,15 @@ public class message {
                 //intialized
                 int value = arrayIndex;
                 int counter = 0;
-                
+              //prompts the user to enter the recipient number
+                recipient = JOptionPane.showInputDialog(null,"Please enter the recipient's cellphone number "
+                + "with the country code");
+                      //creates a new instance of the class
+        Social_Media social = new Social_Media();
+        //method called from the social class
+        
+        social.checkCellPhoneNumber(recipient);
+        recipients.add(recipient);
                 //gets text from the texfield
                 message = messageField.getText();
                 //increase message counter
@@ -399,4 +585,10 @@ public class message {
             }
         });
     }
-}
+        }
+                
+
+
+            
+
+
